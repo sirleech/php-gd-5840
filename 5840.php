@@ -1,5 +1,5 @@
 <?php
-//http://134.178.153.37/5840/5840.php?region=EnterRegionHere&precipDecile=100&precipAmtMm=554&etDecile=20&etAmtMm=457
+//http://134.178.153.37/5840/5840.php?region=EnterRegionHere&precipDecile=100&precipAmtMm=554&etDecile=40&etAmtMm=457&wsChangePc=10
 
 $image = imagecreatefromjpeg("5840.jpg");
 
@@ -43,15 +43,15 @@ $precipDecile= htmlspecialchars($_GET["precipDecile"]);
 $precipAmtMm= htmlspecialchars($_GET["precipAmtMm"]);
 
 switch ($precipDecile) {
-	case 100: $precipColour = $decile_100; break;
-	case 80: $precipColour = $decile_80; break;
-	case 40: $precipColour = $decile_40; break;
-	case 20: $precipColour = $decile_20; break;
-	case 1: $precipColour = $decile_1; break;
+	case 100: $colour = $decile_100; break;
+	case 80: $colour= $decile_80; break;
+	case 40: $colour= $decile_40; break;
+	case 20: $colour= $decile_20; break;
+	case 1: $colour= $decile_1; break;
 }
 
 imagefilledellipse($image, 295, 60, $decCircRadius, $decCircRadius, $stroke);
-imagefilledellipse($image,295,60,$decCircRadius-3,$decCircRadius-3,$precipColour);
+imagefilledellipse($image,295,60,$decCircRadius-3,$decCircRadius-3,$colour);
 ImageTTFText ($image, $nameFontSize, 0, 328, 68, $blue, $arialBd,'Rainfall');
 ImageTTFText ($image, $valueFontSize, 0, 328, 95, $blue, $helvLight,"$precipAmtMm mm");
 
@@ -60,17 +60,24 @@ $etDecile= htmlspecialchars($_GET["etDecile"]);
 $etAmtMm= htmlspecialchars($_GET["etAmtMm"]);
 
 switch ($etDecile) {
-	case 100: $etColour = $decile_100; break;
-	case 80: $etColour = $decile_80; break;
-	case 40: $etColour = $decile_40; break;
-	case 20: $etColour = $decile_20; break;
-	case 1: $etColour = $decile_1; break;
+	case 100: $colour= $decile_100; break;
+	case 80: $colour= $decile_80; break;
+	case 40: $colour= $decile_40; break;
+	case 20: $colour= $decile_20; break;
+	case 1: $colour= $decile_1; break;
 }
 
 imagefilledellipse($image, 720, 60, $decCircRadius, $decCircRadius, $stroke);
-imagefilledellipse($image,720,60,$decCircRadius-3,$decCircRadius-3,$etColour);
+imagefilledellipse($image,720,60,$decCircRadius-3,$decCircRadius-3,$colour);
 ImageTTFText ($image, $nameFontSize, 0, 480, 68, $blue, $arialBd,'Evapotranspiration');
-ImageTTFText ($image, $valueFontSize, 0, 480, 95, $blue, $helvLight,"$precipAmtMm mm");
+ImageTTFText ($image, $valueFontSize, 0, 480, 95, $blue, $helvLight,"$etAmtMm mm");
+
+// Water Storage
+$wsChangePc= htmlspecialchars($_GET["wsChangePc"]);
+$plus = "";
+if ($wsChangePc > 0) { $plus = "+";}
+ImageTTFText ($image, $nameFontSize, 0, 710, 270, $white, $arialBd,'Water Storage');
+ImageTTFText ($image, $valueFontSize, 0, 710, 270+28, $white, $helvLight,"$plus$wsChangePc%");
 
 
 //image draw
