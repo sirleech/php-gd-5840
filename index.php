@@ -1,9 +1,9 @@
 <html>
 <body>
-
+Valid values for the "deciles" are 100, 80, 40, 20, and 10.
 <form action="5840.php" method="GET">
 Region: <input type="text" name="region" value=Canberra /><br/>
-Precipitation Decile: <input type="text" name="precipDecile" value=30 /><br/>
+Precipitation Decile: <input type="text" name="precipDecile" value=40 /><br/>
 Precipitation Amt MM: <input type="text" name="precipAmtMm" value=444 /><br/>
 ET Decile: <input type="text" name="etDecile" value=80 /><br/>
 ET Amt MM: <input type="text" name="etAmtMm" value=777 /><br/>
