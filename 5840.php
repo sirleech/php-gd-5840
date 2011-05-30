@@ -47,7 +47,7 @@ switch ($precipDecile) {
 	case 80: $colour= $decile_80; break;
 	case 40: $colour= $decile_40; break;
 	case 20: $colour= $decile_20; break;
-	case 1: $colour= $decile_1; break;
+	case 10: $colour= $decile_1; break;
 }
 
 imagefilledellipse($image, 295, 60, $decCircRadius, $decCircRadius, $stroke);
@@ -64,7 +64,7 @@ switch ($etDecile) {
 	case 80: $colour= $decile_80; break;
 	case 40: $colour= $decile_40; break;
 	case 20: $colour= $decile_20; break;
-	case 1: $colour= $decile_1; break;
+	case 10: $colour= $decile_1; break;
 }
 
 imagefilledellipse($image, 720, 60, $decCircRadius, $decCircRadius, $stroke);
@@ -88,7 +88,7 @@ switch ($lwDecile) {
 	case 80: $colour= $decile_80; break;
 	case 40: $colour= $decile_40; break;
 	case 20: $colour= $decile_20; break;
-	case 1: $colour= $decile_1; break;
+	case 10: $colour= $decile_1; break;
 }
 
 $y = 450;
