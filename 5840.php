@@ -1,5 +1,5 @@
 <?php
-//http://134.178.153.37/5840/5840.php?region=EnterRegionHere&precipDecile=100&precipAmtMm=554&etDecile=40&etAmtMm=457&wsChangePc=10
+//http://134.178.153.37/5840/5840.php?region=Murry-Darling%20Basin&precipDecile=100&precipAmtMm=554&etDecile=40&etAmtMm=457&wsChangePc=10mtMm=457&wsChangePc=10
 
 $image = imagecreatefromjpeg("5840.jpg");
 
@@ -78,6 +78,34 @@ $plus = "";
 if ($wsChangePc > 0) { $plus = "+";}
 ImageTTFText ($image, $nameFontSize, 0, 710, 270, $white, $arialBd,'Water Storage');
 ImageTTFText ($image, $valueFontSize, 0, 710, 270+28, $white, $helvLight,"$plus$wsChangePc%");
+
+// Landscape Water Yield
+$lwDecile= htmlspecialchars($_GET["lwDecile"]);
+$lwAmtMm= htmlspecialchars($_GET["lwAmtMm"]);
+
+switch ($lwDecile) {
+	case 100: $colour= $decile_100; break;
+	case 80: $colour= $decile_80; break;
+	case 40: $colour= $decile_40; break;
+	case 20: $colour= $decile_20; break;
+	case 1: $colour= $decile_1; break;
+}
+
+$y = 450;
+
+imagefilledellipse($image, 1000, $y, $decCircRadius, $decCircRadius, $stroke);
+imagefilledellipse($image,1000,$y,$decCircRadius-3,$decCircRadius-3,$colour);
+ImageTTFText ($image, $nameFontSize, 0, 1030, $y+9, $white, $arialBd,'Landscape Water Yield');
+ImageTTFText ($image, $valueFontSize, 0, 1030, $y+37, $white, $helvLight,"$lwAmtMm mm");
+
+// Soil Moisture
+$smChangePc= htmlspecialchars($_GET["smChangePc"]);
+$plus = "";
+$x = 560;
+$y = 720;
+if ($smChangePc > 0) { $plus = "+";}
+ImageTTFText ($image, $nameFontSize, 0, $x, $y, $white, $arialBd,'Soil Moisture');
+ImageTTFText ($image, $valueFontSize, 0, $x+100, $y+28, $white, $helvLight,"$plus$smChangePc%");
 
 
 //image draw
