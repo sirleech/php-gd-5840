@@ -9,13 +9,14 @@ $black = imagecolorallocate($image, 0,0,0);
 $white = imagecolorallocate($image, 255,255,255);
 
 //fonts
-$helvLight = 'fonts/HelveticaNeueLight.ttf';
-$arialBd = 'fonts/arialbd.ttf';
+$helv = '../fonts/HelveticaNeue.ttf';
+$helvLight = '../fonts/HelveticaNeueLight.ttf';
+$arialBd = '../fonts/arialbd.ttf';
 
 $titleFontSize = 24;
 $regionFontSize = 20;
-$nameFontSize = 17;
-$valueFontSize = 17;
+$nameFontSize = 18;
+$valueFontSize = 18;
 
 //title
 $title = "Estimated landscape water
@@ -54,7 +55,7 @@ switch ($precipDecile) {
 imagefilledellipse($image, 295, 60, $decCircRadius, $decCircRadius, $stroke);
 imagefilledellipse($image,295,60,$decCircRadius-3,$decCircRadius-3,$colour);
 ImageTTFText ($image, $nameFontSize, 0, 328, 68, $blue, $arialBd,'Rainfall');
-ImageTTFText ($image, $valueFontSize, 0, 328, 95, $blue, $helvLight,"$precipAmtMm mm");
+ImageTTFText ($image, $valueFontSize, 0, 328, 95, $blue, $helv,"$precipAmtMm mm");
 
 // Evapotranspiration
 $etDecile= htmlspecialchars($_GET["etDecile"]);
@@ -69,17 +70,19 @@ switch ($etDecile) {
 	default: $colour= $black; break;
 }
 
-imagefilledellipse($image, 720, 60, $decCircRadius, $decCircRadius, $stroke);
-imagefilledellipse($image,720,60,$decCircRadius-3,$decCircRadius-3,$colour);
+imagefilledellipse($image, 730, 60, $decCircRadius, $decCircRadius, $stroke);
+imagefilledellipse($image,730,60,$decCircRadius-3,$decCircRadius-3,$colour);
 ImageTTFText ($image, $nameFontSize, 0, 480, 68, $blue, $arialBd,'Evapotranspiration');
-ImageTTFText ($image, $valueFontSize, 0, 480, 95, $blue, $helvLight,"$etAmtMm mm");
+ImageTTFText ($image, $valueFontSize, 0, 480, 95, $blue, $helv,"$etAmtMm mm");
 
 // Water Storage
 $wsChangePc= htmlspecialchars($_GET["wsChangePc"]);
 $plus = "";
 if ($wsChangePc > 0) { $plus = "+";}
-ImageTTFText ($image, $nameFontSize, 0, 710, 270, $white, $arialBd,'Water Storage');
-ImageTTFText ($image, $valueFontSize, 0, 710, 270+28, $white, $helvLight,"$plus$wsChangePc%");
+$x = 710;
+$y = 260;
+ImageTTFText ($image, $nameFontSize, 0, $x, $y, $white, $arialBd,'Water Storage');
+ImageTTFText ($image, $valueFontSize, 0, $x, $y+28, $white, $helv,"$plus$wsChangePc%");
 
 // Landscape Water Yield
 $lwDecile= htmlspecialchars($_GET["lwDecile"]);
@@ -99,16 +102,16 @@ $y = 450;
 imagefilledellipse($image, 1000, $y, $decCircRadius, $decCircRadius, $stroke);
 imagefilledellipse($image,1000,$y,$decCircRadius-3,$decCircRadius-3,$colour);
 ImageTTFText ($image, $nameFontSize, 0, 1030, $y+9, $white, $arialBd,'Landscape Water Yield');
-ImageTTFText ($image, $valueFontSize, 0, 1030, $y+37, $white, $helvLight,"$lwAmtMm mm");
+ImageTTFText ($image, $valueFontSize, 0, 1030, $y+37, $white, $helv,"$lwAmtMm mm");
 
 // Soil Moisture
 $smChangePc= htmlspecialchars($_GET["smChangePc"]);
 $plus = "";
-$x = 560;
-$y = 720;
+$x = 565;
+$y = 730;
 if ($smChangePc > 0) { $plus = "+";}
 ImageTTFText ($image, $nameFontSize, 0, $x, $y, $white, $arialBd,'Soil Moisture');
-ImageTTFText ($image, $valueFontSize, 0, $x+100, $y+28, $white, $helvLight,"$plus$smChangePc%");
+ImageTTFText ($image, $valueFontSize, 0, $x+100, $y+28, $white, $helv,"$plus$smChangePc%");
 
 
 //image draw
